@@ -1,5 +1,6 @@
 # santawars-contract
 
+`./hardhat.config.js`
 ```
 require('@nomiclabs/hardhat-waffle');
 
