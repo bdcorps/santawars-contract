@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "hardhat run scripts/run.js"
+    "dev": "hardhat run scripts/run.js",
+    "deploy": "hardhat run scripts/deploy.js --network rinkeby"
   },
   "keywords": [],
   "author": "",

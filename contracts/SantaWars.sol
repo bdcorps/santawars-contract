@@ -28,6 +28,9 @@ contract SantaWars is ERC721 {
   mapping(uint256 => CharacterAttributes) public nftHolderAttributes;
 
   mapping(address => uint256) public nftHolders;
+  uint public totalNFTHolders;
+
+  address[] allPlayers;
 
   constructor(
     string[] memory characterNames,
@@ -78,6 +81,7 @@ contract SantaWars is ERC721 {
     console.log("Minted NFT w/ tokenId %s and characterIndex %s", newItemId, _characterIndex);
     
     nftHolders[msg.sender] = newItemId;
+    allPlayers.push(msg.sender);
 
     _tokenIds.increment();
 
@@ -184,8 +188,8 @@ function heal(address targetAddress) public {
   emit HealComplete(target.hp, player.hp);
 }
 
-function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
-  uint256 userNftTokenId = nftHolders[msg.sender];
+function getNFTOnUser(address targetAddress) public view returns (CharacterAttributes memory) {
+  uint256 userNftTokenId = nftHolders[targetAddress];
   if (userNftTokenId > 0) {
     return nftHolderAttributes[userNftTokenId];
   }
@@ -197,6 +201,10 @@ function checkIfUserHasNFT() public view returns (CharacterAttributes memory) {
 
 function getAllDefaultCharacters() public view returns (CharacterAttributes[] memory) {
   return defaultCharacters;
+}
+
+function getAllPlayers() public view returns (address[] memory) {
+  return allPlayers;
 }
 
 event CharacterNFTMinted(address sender, uint256 tokenId, uint256 characterIndex);
