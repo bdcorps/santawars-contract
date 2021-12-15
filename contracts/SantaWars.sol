@@ -31,6 +31,7 @@ contract SantaWars is ERC721 {
   uint public totalNFTHolders;
 
   address[] allPlayers;
+  mapping(address => bool) userExists;
 
   constructor(
     string[] memory characterNames,
@@ -57,7 +58,6 @@ contract SantaWars is ERC721 {
       console.log("Done initializing %s w/ HP %s, img %s", c.name, c.hp, c.imageURI);
     }
 
-    // deadlineTime = 1640455200; christmas day
     deadlineTime = 1640455200;
 
     _tokenIds.increment();
@@ -65,6 +65,12 @@ contract SantaWars is ERC721 {
 
 // _characterIndex -> which character you want to mint
   function mintCharacterNFT(uint _characterIndex) external {
+
+  require (
+    !userExists[msg.sender],
+    "Error: You already own an NFT"
+  );
+
     uint256 newItemId = _tokenIds.current();
     _safeMint(msg.sender, newItemId);
 
@@ -82,6 +88,7 @@ contract SantaWars is ERC721 {
     
     nftHolders[msg.sender] = newItemId;
     allPlayers.push(msg.sender);
+    userExists[msg.sender] = true;
 
     _tokenIds.increment();
 
@@ -121,9 +128,6 @@ contract SantaWars is ERC721 {
 
 function attack(address targetAddress) public {
   uint time = block.timestamp;
-
-  console.log("time is", time, "deadline ", deadlineTime);
-
   require (
     time < deadlineTime,
     "Error: contract was only valid until Dec 25, 2021."
@@ -159,6 +163,12 @@ function attack(address targetAddress) public {
 }
 
 function heal(address targetAddress) public {
+  uint time = block.timestamp;
+  require (
+    time < deadlineTime,
+    "Error: contract was only valid until Dec 25, 2021."
+  );
+
   uint256 nftTokenIdOfTarget = nftHolders[targetAddress];
   CharacterAttributes storage target = nftHolderAttributes[nftTokenIdOfTarget];
 
