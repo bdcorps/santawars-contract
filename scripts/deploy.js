@@ -9,7 +9,7 @@ const main = async () => {
       "https://i.imgur.com/xNgesuL.png",
       "https://i.imgur.com/0yEPWx8.png",
       "https://i.imgur.com/z6XcNvu.png"],
-    [130, 120, 125, 120, 100, 80],
+    [1300, 1200, 1250, 1200, 1000, 800],
     [18, 20, 18, 30, 24, 36],
     [24, 30, 20, 16, 10, 16],
   );

@@ -17,15 +17,15 @@ const main = async () => {
   await gameContract.deployed();
   console.log("Contract deployed to:", gameContract.address);
 
-  let txn;
-  txn = await gameContract.mintCharacterNFT(0);
-  await txn.wait();
+  // let txn;
+  // txn = await gameContract.mintCharacterNFT(0);
+  // await txn.wait();
 
-  txn = await gameContract.attack(owner.address);
-  await txn.wait();
+  // txn = await gameContract.attack(owner.address);
+  // await txn.wait();
 
-  txn = await gameContract.heal(owner.address);
-  await txn.wait();
+  // txn = await gameContract.heal(owner.address);
+  // await txn.wait();
 
   // Get the value of the NFT's URI.
   // let returnedTokenUri = await gameContract.tokenURI(1);
