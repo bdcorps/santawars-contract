@@ -4,10 +4,10 @@ const main = async () => {
   const gameContractFactory = await hre.ethers.getContractFactory('SantaWars');
   const gameContract = await gameContractFactory.deploy(
     ["Santa", "Gingerbread Man", "Snowman", "Grinch", "Devil", "Rudolph"],
-    ["https://i.imgur.com/JktQSET.png",
+    ["https://i.imgur.com/dXkubKo.png",
       "https://i.imgur.com/BEtfRao.png",
       "https://i.imgur.com/i4G9h22.png",
-      "https://i.imgur.com/xNgesuL.png",
+      "https://i.imgur.com/lUQ9wuy.png",
       "https://i.imgur.com/0yEPWx8.png",
       "https://i.imgur.com/z6XcNvu.png"],
     [130, 120, 125, 120, 100, 80],
